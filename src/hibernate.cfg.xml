@@ -23,6 +23,7 @@
 
         <!--Annotated entity class-->
         <mapping class="main.java.Author"/>
+        <mapping class="main.java.Address"/>
        <!-- <mapping class="main.java.Crud"/>-->
 
     </session-factory>
