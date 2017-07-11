@@ -7,18 +7,25 @@ public class authorMain {
 
     public static void main(String[] args) throws ParseException {
         Crud crud = new Crud();
-        /* Create Operation for 3 records */
-        String d="18/05/1993";
-        Date dob= new SimpleDateFormat("dd/MM/yyyy").parse(d);
-        crud.saveAuthor("abc", "xxx", 27,dob);
-        d="22/10/1992";
-        dob= new SimpleDateFormat("dd/MM/yyyy").parse(d);
-        crud.saveAuthor("def", "yyy", 42,dob);
-        d="3/08/1985";
-        dob= new SimpleDateFormat("dd/MM/yyyy").parse(d);
-        crud.saveAuthor("ghi", "xzz", 35,dob);
 
-        /* Read operation for records to retrieve records in database */
+        /* Records in database before updation */
+        crud.readAuthor();
+
+        /* Update Operation for 4 records */
+        String d="20/05/1993";
+        Date dob= new SimpleDateFormat("dd/MM/yyyy").parse(d);
+        crud.saveAuthor("hij", "xxz", 27,dob);
+        d="15/10/1989";
+        dob= new SimpleDateFormat("dd/MM/yyyy").parse(d);
+        crud.saveAuthor("jkl", "yxy", 42,dob);
+        d="9/08/1991";
+        dob= new SimpleDateFormat("dd/MM/yyyy").parse(d);
+        crud.saveAuthor("lmn", "yzz", 35,dob);
+        d="29/03/1991";
+        dob= new SimpleDateFormat("dd/MM/yyyy").parse(d);
+        crud.saveAuthor("opq", "xzzy", 35,dob);
+
+        /* Read operation after Updation */
         crud.readAuthor();
 
     }
