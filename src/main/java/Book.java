@@ -1,15 +1,22 @@
 package main.java;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Book {
     @Id@GeneratedValue(strategy = GenerationType.AUTO)
     int bookId;
     private String bookName;
+    @ManyToOne
+    Author author;
+
+    public Author getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(Author author) {
+        this.author = author;
+    }
 
     public int getBookId() {
         return bookId;

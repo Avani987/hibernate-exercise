@@ -31,17 +31,20 @@ public class Crud {
             book3.setBookName("Book 3");
             bookCollection.add(book3);
 
-            session.save(book1);
-            session.save(book2);
-            session.save(book3);
-
             Author author = new Author();
             author.setFirstName(fname);
             author.setLastName(lname);
             author.setAge(age);
             author.setDob(dob);
             author.setBook(bookCollection);
+            book1.setAuthor(author);
+            book2.setAuthor(author);
+            book3.setAuthor(author);
+
             session.save(author);
+            session.save(book1);
+            session.save(book2);
+            session.save(book3);
 
             transaction.commit();
             System.out.println("Record inserted successfully");
