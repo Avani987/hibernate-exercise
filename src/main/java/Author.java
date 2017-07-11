@@ -17,16 +17,28 @@ public class Author implements Serializable{
     String lastName;
     @Temporal(TemporalType.DATE)
     Date dob;
-    @ElementCollection
-    private List<Subject> subjects=new ArrayList<>();
+    /* @ElementCollection
+        private List<Subject> subjects=new ArrayList<>();*/
+    @OneToOne
+    @JoinColumn(name= "BookId")
+    Book book;
 
-    public List<Subject> getSubjects() {
+    public Book getBook() {
+        return book;
+    }
+
+    public void setBook(Book book) {
+        this.book = book;
+    }
+
+
+    /*public List<Subject> getSubjects() {
         return subjects;
     }
 
     public void setSubjects(List<Subject> subjects) {
         this.subjects = subjects;
-    }
+    }*/
 
     public Date getDob() {
         return dob;
@@ -76,7 +88,7 @@ public class Author implements Serializable{
 
     @Override
     public String toString() {
-        return "Age=" + age + ", First Name=" + firstName + ", Last Name=" + lastName + ", Date Of Birth=" + dob;
+        return "Age=" + age + ", First Name=" + firstName + ", Last Name=" + lastName + ", Date Of Birth=" + dob + getBook();
     }
 
 }

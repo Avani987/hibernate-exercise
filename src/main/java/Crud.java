@@ -12,30 +12,38 @@ public class Crud {
 
     SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
 
-    public void saveAuthor(String fname, String lname, int age, Date dob,List<Subject> s) {
+    public void saveAuthor(String fname, String lname, int age, Date dob,String book) {
         Session session = sessionFactory.openSession();
         Transaction transaction = null;
 
         try {
             transaction = session.beginTransaction();
+
+            Book b=new Book();
+            b.setBookName(book);
+            session.save(b);
+
             Author author = new Author();
             author.setFirstName(fname);
             author.setLastName(lname);
             author.setAge(age);
             author.setDob(dob);
-            author.setSubjects(s);
-
+            author.setBook(b);
             session.save(author);
+
             transaction.commit();
             System.out.println("Record inserted successfully");
-        } catch (HibernateException e) {
+        }
+        catch (HibernateException e) {
             transaction.rollback();
             e.printStackTrace();
-        } finally {
+        }
+        finally {
             session.close();
         }
 
     }
+
 
     public void readAuthor()
     {
@@ -46,7 +54,6 @@ public class Crud {
             List<Author> authors = session.createQuery("from Author").list();
             for(Author a : authors) {
                 System.out.println(a.toString());
-                System.out.println("Author's subjects details :" + a.getSubjects());
             }
 
             transaction.commit();

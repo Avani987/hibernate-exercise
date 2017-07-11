@@ -23,7 +23,8 @@
 
         <!--Annotated entity class-->
         <mapping class="main.java.Author"/>
-        <mapping class="main.java.Subject"/>
+       <!-- <mapping class="main.java.Subject"/>-->
+        <mapping class="main.java.Book"/>
 
     </session-factory>
 </hibernate-configuration>
