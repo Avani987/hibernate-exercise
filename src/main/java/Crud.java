@@ -1,7 +1,7 @@
 package main.java;
 
+import java.util.Date;
 import java.util.List;
-import java.util.Scanner;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -12,7 +12,7 @@ public class Crud {
 
     SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
 
-    public void saveAuthor(String fname, String lname, int age) {
+    public void saveAuthor(String fname, String lname, int age, Date dob) {
         Session session = sessionFactory.openSession();
         Transaction transaction = null;
 
@@ -22,6 +22,7 @@ public class Crud {
             author.setFirstName(fname);
             author.setLastName(lname);
             author.setAge(age);
+            author.setDob(dob);
             session.save(author);
             transaction.commit();
             System.out.println("Record inserted successfully");
@@ -46,63 +47,6 @@ public class Crud {
 
             transaction.commit();
 
-        } catch (HibernateException e) {
-
-            transaction.rollback();
-
-            e.printStackTrace();
-
-        } finally {
-
-            session.close();
-
-        }
-    }
-
-    public void deleteAuthor(int id) {
-
-        Session session = sessionFactory.openSession();
-        Transaction transaction=null;
-        try {
-            transaction=session.beginTransaction();
-            Author author=(Author)session.get(Author.class,id);
-            session.delete(author);
-            System.out.println("Author record deleted!");
-            session.getTransaction().commit();
-
-        } catch (HibernateException e) {
-
-            transaction.rollback();
-
-            e.printStackTrace();
-
-        } finally {
-
-            session.close();
-
-        }
-    }
-
-    public void updateAuthor(int i) {
-
-        Session session = sessionFactory.openSession();
-        Transaction transaction = null;
-        try {
-            transaction = session.beginTransaction();
-            Author author= (Author)session.get(Author.class,i);
-            Scanner sc = new Scanner(System.in);
-            System.out.println("Enter the new First Name: ");
-            String fn = sc.next();
-            System.out.println("Enter the new Last Name: ");
-            String ln = sc.next();
-            System.out.println("Enter the new Age: ");
-            int ag = sc.nextInt();
-            author.setAge(ag);
-            author.setFirstName(fn);
-            author.setLastName(ln);
-            session.update(author);
-            System.out.println("Author record updated!");
-            session.getTransaction().commit();
         } catch (HibernateException e) {
 
             transaction.rollback();

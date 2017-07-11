@@ -2,6 +2,7 @@ package main.java;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 
 @Entity
 public class Author implements Serializable{
@@ -11,11 +12,23 @@ public class Author implements Serializable{
     int age;
     String firstName;
     String lastName;
+    @Temporal(TemporalType.DATE)
+    Date dob; // new attribute create to store date of birth
 
-    public Author(int age, String firstName, String lastName) {
+    public Date getDob() {
+        return dob;
+    }
+
+    public void setDob(Date dob) {
+        this.dob = dob;
+    }
+
+
+    public Author(int age, String firstName, String lastName, Date dob) {
         this.age = age;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.dob=dob;
     }
 
     public Author() {
@@ -50,7 +63,7 @@ public class Author implements Serializable{
 
     @Override
     public String toString() {
-        return "Age=" + age + ", First Name='" + firstName + ", Last Name='" + lastName;
+        return "Age=" + age + ", First Name=" + firstName + ", Last Name=" + lastName + ", Date Of Birth=" + dob;
     }
 
 }
