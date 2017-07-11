@@ -7,16 +7,14 @@ import java.util.Date;
 @Entity
 public class Author implements Serializable{
 
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "authorId")
+    @Id
+    @TableGenerator(name="pkTable", allocationSize = 20)         //Use Table
+    @GeneratedValue(generator="pkTable", strategy = GenerationType.TABLE)
     private int aId;
-    @Column(name = "authorAge")
     private int age;
-    @Column(name = "authorFirstName")
     String firstName;
-    @Column(name = "authorLastName")
     String lastName;
-    @Temporal(TemporalType.DATE)@Column(name = "DateOfBirth") //using @Temporal to store only date value
+    @Temporal(TemporalType.DATE) //using @Temporal to sto
     Date dob;
 
     public Date getDob() {
