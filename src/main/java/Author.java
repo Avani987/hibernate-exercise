@@ -7,7 +7,7 @@ import java.util.Date;
 @Entity
 public class Author implements Serializable{
 
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "authorId")
     private int aId;
     @Column(name = "authorAge")
