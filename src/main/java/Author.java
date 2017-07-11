@@ -8,12 +8,16 @@ import java.util.Date;
 public class Author implements Serializable{
 
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "authorId")
     private int aId;
-    int age;
+    @Column(name = "authorAge")
+    private int age;
+    @Column(name = "authorFirstName")
     String firstName;
+    @Column(name = "authorLastName")
     String lastName;
-    @Temporal(TemporalType.DATE)
-    Date dob; // new attribute create to store date of birth
+    @Temporal(TemporalType.DATE)@Column(name = "DateOfBirth")
+    Date dob;
 
     public Date getDob() {
         return dob;
