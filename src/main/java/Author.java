@@ -17,8 +17,6 @@ public class Author implements Serializable{
     String lastName;
     @Temporal(TemporalType.DATE)
     Date dob;
-    /* @ElementCollection
-        private List<Subject> subjects=new ArrayList<>();*/
     @OneToOne
     @JoinColumn(name= "BookId")
     Book book;
@@ -31,14 +29,6 @@ public class Author implements Serializable{
         this.book = book;
     }
 
-
-    /*public List<Subject> getSubjects() {
-        return subjects;
-    }
-
-    public void setSubjects(List<Subject> subjects) {
-        this.subjects = subjects;
-    }*/
 
     public Date getDob() {
         return dob;
