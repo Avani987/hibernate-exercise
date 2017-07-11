@@ -1,5 +1,7 @@
 package main.java;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import org.hibernate.HibernateException;
@@ -12,23 +14,33 @@ public class Crud {
 
     SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
 
-    public void saveAuthor(String fname, String lname, int age, Date dob,String book) {
+    public void saveAuthor(String fname, String lname, int age, Date dob) {
         Session session = sessionFactory.openSession();
         Transaction transaction = null;
 
         try {
             transaction = session.beginTransaction();
+            Collection<Book> bookCollection= new ArrayList<>();
+            Book book1=new Book();
+            book1.setBookName("Book 1");
+            bookCollection.add(book1);
+            Book book2=new Book();
+            book2.setBookName("Book 2");
+            bookCollection.add(book2);
+            Book book3=new Book();
+            book3.setBookName("Book 3");
+            bookCollection.add(book3);
 
-            Book b=new Book();
-            b.setBookName(book);
-            session.save(b);
+            session.save(book1);
+            session.save(book2);
+            session.save(book3);
 
             Author author = new Author();
             author.setFirstName(fname);
             author.setLastName(lname);
             author.setAge(age);
             author.setDob(dob);
-            author.setBook(b);
+            author.setBook(bookCollection);
             session.save(author);
 
             transaction.commit();

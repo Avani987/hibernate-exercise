@@ -3,6 +3,7 @@ package main.java;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -17,18 +18,18 @@ public class Author implements Serializable{
     String lastName;
     @Temporal(TemporalType.DATE)
     Date dob;
-    @OneToOne
-    @JoinColumn(name= "BookId")
-    Book book;
 
-    public Book getBook() {
-        return book;
-    }
+    @OneToMany
+    @JoinTable(joinColumns= @JoinColumn(name = "authorId"),inverseJoinColumns= @JoinColumn(name= "bookId"))
+    Collection<Book> book=new ArrayList<>();
 
-    public void setBook(Book book) {
+    public void setBook(Collection<Book> book) {
         this.book = book;
     }
 
+    public Collection<Book> getBook() {
+        return book;
+    }
 
     public Date getDob() {
         return dob;
@@ -78,7 +79,7 @@ public class Author implements Serializable{
 
     @Override
     public String toString() {
-        return "Age=" + age + ", First Name=" + firstName + ", Last Name=" + lastName + ", Date Of Birth=" + dob + getBook();
+        return "Age=" + age + ", First Name=" + firstName + ", Last Name=" + lastName + ", Date Of Birth=" + dob + ", List of Books : " + getBook();
     }
 
 }
