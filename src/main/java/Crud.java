@@ -37,14 +37,8 @@ public class Crud {
             author.setAge(age);
             author.setDob(dob);
             author.setBook(bookCollection);
-            book1.setAuthor(author);
-            book2.setAuthor(author);
-            book3.setAuthor(author);
 
-            session.save(author);
-            session.save(book1);
-            session.save(book2);
-            session.save(book3);
+            session.persist(author);
 
             transaction.commit();
             System.out.println("Record inserted successfully");
