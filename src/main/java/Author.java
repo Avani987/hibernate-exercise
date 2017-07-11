@@ -15,9 +15,8 @@ public class Author implements Serializable{
     @Column(name = "authorFirstName")
     String firstName;
     @Column(name = "authorLastName")
-    @Transient
     String lastName;
-    @Temporal(TemporalType.DATE)@Column(name = "DateOfBirth")
+    @Temporal(TemporalType.DATE)@Column(name = "DateOfBirth") //using @Temporal to store only date value
     Date dob;
 
     public Date getDob() {
