@@ -19,7 +19,7 @@ public class Author implements Serializable{
     @Temporal(TemporalType.DATE)
     Date dob;
 
-    @OneToMany(cascade = CascadeType.PERSIST)
+    @ManyToMany
     Collection<Book> book=new ArrayList<>();
 
     public void setBook(Collection<Book> book) {
