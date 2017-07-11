@@ -19,8 +19,7 @@ public class Author implements Serializable{
     @Temporal(TemporalType.DATE)
     Date dob;
 
-    @OneToMany
-    @JoinTable(joinColumns= @JoinColumn(name = "authorId"),inverseJoinColumns= @JoinColumn(name= "bookId"))
+    @OneToMany(mappedBy = "author")
     Collection<Book> book=new ArrayList<>();
 
     public void setBook(Collection<Book> book) {
