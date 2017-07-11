@@ -1,5 +1,8 @@
 package main.java;
 
+import javax.persistence.Embeddable;
+
+@Embeddable
 public class Address {
     int streetNo;
     String location;
@@ -41,5 +44,8 @@ public class Address {
         this.state = state;
     }
 
-
+    @Override
+    public String toString() {
+        return "Street Number:"+ streetNo+", Location: "+ location+", State:"+ state;
+    }
 }

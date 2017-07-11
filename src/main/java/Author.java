@@ -8,14 +8,23 @@ import java.util.Date;
 public class Author implements Serializable{
 
     @Id
-    @TableGenerator(name="pkTable", allocationSize = 20)         //Use Table
-    @GeneratedValue(generator="pkTable", strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int aId;
     private int age;
     String firstName;
     String lastName;
-    @Temporal(TemporalType.DATE) //using @Temporal to sto
+    @Temporal(TemporalType.DATE)
     Date dob;
+    @Embedded
+    Address address;
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
 
     public Date getDob() {
         return dob;
