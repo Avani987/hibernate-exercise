@@ -23,8 +23,7 @@
 
         <!--Annotated entity class-->
         <mapping class="main.java.Author"/>
-        <mapping class="main.java.Address"/>
-       <!-- <mapping class="main.java.Crud"/>-->
+        <mapping class="main.java.Subject"/>
 
     </session-factory>
 </hibernate-configuration>

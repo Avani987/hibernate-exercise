@@ -2,7 +2,9 @@ package main.java;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Author implements Serializable{
@@ -15,15 +17,15 @@ public class Author implements Serializable{
     String lastName;
     @Temporal(TemporalType.DATE)
     Date dob;
-    @Embedded
-    Address address;
+    @ElementCollection
+    private List<Subject> subjects=new ArrayList<>();
 
-    public Address getAddress() {
-        return address;
+    public List<Subject> getSubjects() {
+        return subjects;
     }
 
-    public void setAddress(Address address) {
-        this.address = address;
+    public void setSubjects(List<Subject> subjects) {
+        this.subjects = subjects;
     }
 
     public Date getDob() {

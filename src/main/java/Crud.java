@@ -12,7 +12,7 @@ public class Crud {
 
     SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
 
-    public void saveAuthor(String fname, String lname, int age, Date dob,Address address) {
+    public void saveAuthor(String fname, String lname, int age, Date dob,List<Subject> s) {
         Session session = sessionFactory.openSession();
         Transaction transaction = null;
 
@@ -23,7 +23,8 @@ public class Crud {
             author.setLastName(lname);
             author.setAge(age);
             author.setDob(dob);
-            author.setAddress(address);
+            author.setSubjects(s);
+
             session.save(author);
             transaction.commit();
             System.out.println("Record inserted successfully");
@@ -45,7 +46,7 @@ public class Crud {
             List<Author> authors = session.createQuery("from Author").list();
             for(Author a : authors) {
                 System.out.println(a.toString());
-                System.out.println("Author's address details :" + a.getAddress());
+                System.out.println("Author's subjects details :" + a.getSubjects());
             }
 
             transaction.commit();
