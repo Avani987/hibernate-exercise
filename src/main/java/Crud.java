@@ -56,6 +56,7 @@ public class Crud {
         } finally {
 
             session.close();
+            sessionFactory.close();
 
         }
     }
