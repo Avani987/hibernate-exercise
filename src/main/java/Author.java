@@ -8,13 +8,13 @@ import java.util.Date;
 public class Author implements Serializable{
 
     @Id
-    @TableGenerator(name="pkTable", allocationSize = 20)         //Use Table
+    @TableGenerator(name="pkTable", allocationSize = 20) //Use Table
     @GeneratedValue(generator="pkTable", strategy = GenerationType.TABLE)
     private int aId;
     private int age;
     String firstName;
     String lastName;
-    @Temporal(TemporalType.DATE) //using @Temporal to sto
+    @Temporal(TemporalType.DATE)
     Date dob;
 
     public Date getDob() {
@@ -24,7 +24,6 @@ public class Author implements Serializable{
     public void setDob(Date dob) {
         this.dob = dob;
     }
-
 
     public Author(int age, String firstName, String lastName, Date dob) {
         this.age = age;
